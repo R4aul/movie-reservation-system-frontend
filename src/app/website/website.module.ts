@@ -5,13 +5,15 @@ import { WebsiteRoutingModule } from './website-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { MovieDetailComponent } from './pages/movie-detail/movie-detail.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     NavigationComponent,
-    LayoutComponent
+    LayoutComponent,
+    MovieDetailComponent
   ],
   imports: [
     CommonModule,
