@@ -1,0 +1,92 @@
+<div class="min-h-screen bg-gray-900 text-white p-6">
+
+  <div class="max-w-6xl mx-auto">
+
+    <!-- 🎬 PELÍCULA -->
+    <div class="grid md:grid-cols-2 gap-8 mb-10">
+
+      <!-- Imagen -->
+      <div class="flex justify-center">
+        <div class="w-80 h-[450px] bg-gray-700 rounded-2xl"></div>
+      </div>
+
+      <!-- Info -->
+      <div class="flex flex-col justify-center">
+        <h1 class="text-4xl font-bold mb-4">
+          {{movie?.title}}
+        </h1>
+
+        <div class="space-y-2 mb-4">
+          <p><span class="font-semibold">🎬 Género:</span> {{movie?.genre?.name}}</p>
+          <p><span class="font-semibold">⏱ Duración:</span> {{movie?.duration}} min</p>
+          <p><span class="font-semibold">🔞 Clasificación:</span> {{movie?.rating}}</p>
+        </div>
+
+        <p class="text-gray-300">
+          Película de acción con superhéroes enfrentando una amenaza global.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- 🎟 FUNCIONES -->
+    <div>
+
+      <h2 class="text-2xl font-bold mb-6">
+        Funciones disponibles
+      </h2>
+
+      <!-- ✅ SI HAY FUNCIONES -->
+      <div *ngIf="movie?.showtimes?.length; else noFunctions">
+
+        <div class="grid gap-4">
+
+          <div 
+            class="bg-gray-800 p-4 rounded-xl shadow flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+            *ngFor="let i of movie?.showtimes"
+          >
+
+            <!-- Info -->
+            <div>
+              <p class="font-semibold">
+                🎥 Sala {{ i.room.name }}
+              </p>
+              <p class="text-gray-400 text-sm">
+                Capacidad: {{ i.room.capacity }}
+              </p>
+            </div>
+
+            <!-- Hora -->
+            <div>
+              <span class="bg-red-600 px-4 py-2 rounded-lg font-semibold">
+                {{ i.startTime | date:'shortTime' }}
+              </span>
+            </div>
+
+            <!-- BOTÓN -->
+            <div>
+              <button
+                class="bg-blue-600 hover:bg-blue-700 transition px-4 py-2 rounded-lg font-semibold shadow"
+              >
+                Escoger función
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ❌ NO HAY FUNCIONES -->
+      <ng-template #noFunctions>
+        <div class="bg-gray-800 p-6 rounded-xl text-center text-gray-400">
+          No hay funciones disponibles por el momento 🎬
+        </div>
+      </ng-template>
+
+    </div>
+
+  </div>
+
+</div>
