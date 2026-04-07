@@ -1,0 +1,50 @@
+<div class="min-h-screen bg-gray-100 p-6">
+
+  <!-- Header -->
+  <div class="max-w-7xl mx-auto mb-8">
+    <h1 class="text-3xl font-bold text-gray-800">
+      🎬 Cartelera
+    </h1>
+    <p class="text-gray-500">Películas disponibles</p>
+  </div>
+
+  <!-- Grid -->
+  <div class="max-w-7xl mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+
+    <div *ngFor="let movie of movies"
+         class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition">
+
+      <!-- Imagen -->
+      <img
+        [src]="movie.image"
+        [alt]="movie.title"
+        class="w-full h-72 object-cover"
+      />
+
+      <!-- Info -->
+      <div class="p-4">
+        <h2 class="text-lg font-semibold text-gray-800">
+          {{ movie.title }}
+        </h2>
+
+        <p class="text-sm text-gray-500">
+          {{ movie.genre.name ? movie.genre.name : 'Si genero' }}
+        </p>
+
+        <p class="text-sm text-gray-500">
+          {{ movie.rating }}
+        </p>
+
+        <!-- Botón -->
+        <button
+          class="mt-4 w-full bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition"
+          [routerLink]="['/movies', movie.id]"
+        >
+          Ver detalle
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
