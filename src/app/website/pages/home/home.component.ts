@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
   loadMovies(){
     this._movieService.all().subscribe({
       next:(response)=>{
-        console.log(response.content);
         this.movies = response.content;
       },
       error:(error)=>{

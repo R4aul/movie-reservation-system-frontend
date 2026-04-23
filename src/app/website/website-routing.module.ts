@@ -6,6 +6,7 @@ import { LayoutComponent } from "./components/layout/layout.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { MovieDetailComponent } from "./pages/movie-detail/movie-detail.component";
 
+import { guestGuard } from "../guards/guest.guard";
 
 const routes: Routes = [
   {
@@ -21,6 +22,16 @@ const routes: Routes = [
         component:MovieDetailComponent
       }
     ]
+  },
+  {
+    path:'login',
+    loadComponent: () => import('./pages/auth/login/login.component').then((c) => c.LoginComponent),
+    canActivate:[guestGuard]
+  },
+  {
+    path:'register',
+    loadComponent: () => import('./pages/auth/register/register.component').then(c => c.RegisterComponent),
+    canActivate:[guestGuard]
   }
 ];
 
