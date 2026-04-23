@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  role: string;
-}
+import { AuthService } from "../../../services/auth.service";
+import { User } from "../../../model/user";
 
 @Component({
   selector: 'app-navigation',
@@ -17,22 +13,24 @@ export class NavigationComponent implements OnInit{
 
   user: User | null = null;
 
+  constructor(
+    private _authService : AuthService,
+  ){}
+
   ngOnInit(): void {
     this.getUser();
   }
 
   getUser() {
-    let user : User = {
-      id:1,
-      name:"Raul",
-      email:"raul@test.com",
-      role:"ADMIN"
-    }
-    this.user = user;
+    this._authService.user$.subscribe({
+      next:(res)=>{
+        this.user = res
+      }
+    })
   }
 
   logout() {
-    localStorage.removeItem('token');
+    this._authService.logout();
     this.user = null;
   }
 
